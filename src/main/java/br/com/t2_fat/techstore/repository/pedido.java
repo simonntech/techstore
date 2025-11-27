@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "pedidos")
 
-public class pedido {
+public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,7 +20,7 @@ public class pedido {
         cascade= CascadeType.ALL)
     private List<ItemPedido>itens;
 
-    public pedido(Cliente cliente, Long id, List<ItemPedido> itens) {
+    public Pedido(Cliente cliente, Long id, List<ItemPedido> itens) {
         this.cliente = cliente;
         this.id = id;
         this.itens = itens;
