@@ -1,21 +1,22 @@
 package br.com.t2_fat.techstore.web;
 import br.com.t2_fat.techstore.domain.Product;
+import br.com.t2_fat.techstore.domain.Category;
 import br.com.t2_fat.techstore.repository.ProductRepository;
 
-import java.math.BigDecimal;
-import java.util.List;
 
 import org.springframework.stereotype.Controller;
- import org.springframework.ui.Model;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import br.com.t2_fat.techstore.domain.Category;
- @Controller
+import java.math.BigDecimal;
+import java.util.List;
 
- public class ProductController {
+@Controller
+
+public class ProductController {
     
     private final ProductRepository productRepository;
     
@@ -33,6 +34,7 @@ import br.com.t2_fat.techstore.domain.Category;
     public String showForm(Model model) {
         Product product = new Product();
         product.setPrice(BigDecimal.ZERO);
+        
         model.addAttribute("product", product);
     
         List<Category> categories = categoryRepository.findAll();
