@@ -19,4 +19,10 @@ public class pedido {
     @OneToMany(mappedBy = "pedido",
         cascade= CascadeType.ALL)
     private List<ItemPedido>itens;
+
+    public pedido(Cliente cliente, Long id, List<ItemPedido> itens) {
+        this.cliente = cliente;
+        this.id = id;
+        this.itens = itens;
+    }
 }
