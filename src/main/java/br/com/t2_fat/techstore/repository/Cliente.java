@@ -9,14 +9,14 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "clientes")
 
-public class clientes {
+public class Cliente {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String email;
 
-    public clientes(String email, Long id, String name) {
+    public Cliente(String email, Long id, String name) {
         this.email = email;
         this.id = id;
         this.name = name;
