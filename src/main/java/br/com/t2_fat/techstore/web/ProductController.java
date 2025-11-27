@@ -1,10 +1,20 @@
- package br.com.t2_fat.techstore.web;
- import br.com.t2_fat.techstore.repository.ProductRepository;
- import org.springframework.stereotype.Controller;
+package br.com.t2_fat.techstore.web;
+import br.com.t2_fat.techstore.domain.Product;
+import br.com.t2_fat.techstore.repository.ProductRepository;
+
+import java.math.BigDecimal;
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
  import org.springframework.ui.Model;
- import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import br.com.t2_fat.techstore.domain.Category;
  @Controller
- 
+
  public class ProductController {
     
     private final ProductRepository productRepository;
@@ -17,5 +27,31 @@
     public String list(Model model) {
         model.addAttribute("products", productRepository.findAll());
         return "products/list";
+    }
+
+    @GetMapping("/products/new")
+    public String showForm(Model model) {
+        Product product = new Product();
+        product.setPrice(BigDecimal.ZERO);
+        model.addAttribute("product", product);
+    
+        List<Category> categories = categoryRepository.findAll();
+        model.addAttribute("categories", categories);
+    
+        return "products/form";
+    }
+
+    @PostMapping("/products")
+    public String save(@ModelAttribute("product") Product product,
+                   BindingResult bindingResult,
+                   Model model) {
+    
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("categories", categoryRepository.findAll());
+            return "products/form";
+        }
+    
+        productRepository.save(product);
+        return "redirect:/products";
     }
  }
