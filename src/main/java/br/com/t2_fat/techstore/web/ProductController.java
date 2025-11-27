@@ -1,6 +1,7 @@
 package br.com.t2_fat.techstore.web;
 import br.com.t2_fat.techstore.domain.Product;
 import br.com.t2_fat.techstore.domain.Category;
+import br.com.t2_fat.techstore.repository.CategoryRepository;
 import br.com.t2_fat.techstore.repository.ProductRepository;
 
 
@@ -19,9 +20,11 @@ import java.util.List;
 public class ProductController {
     
     private final ProductRepository productRepository;
+    private final CategoryRepository categoryRepository;
     
-    public ProductController(ProductRepository productRepository) {
+    public ProductController(ProductRepository productRepository, CategoryRepository categoryRepository) {
         this.productRepository = productRepository;
+        this.categoryRepository = categoryRepository;
     }
     
     @GetMapping("/products")
