@@ -2,6 +2,7 @@ package br.com.t2_fat.techstore.services;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import br.com.t2_fat.techstore.domain.Product;
 import br.com.t2_fat.techstore.repository.ProductRepository;
 
 @Service
