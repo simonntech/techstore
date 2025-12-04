@@ -12,6 +12,11 @@ public class ProductService {
     public ProductService(ProductRepository repo) {
         this.repo = repo;
     }
+
+    @Transactional
+    public Product save(Product p) {
+    return repo.save(p);
 }
 
-@Transactional
+
+}
