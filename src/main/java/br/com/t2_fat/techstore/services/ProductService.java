@@ -16,6 +16,9 @@ public class ProductService {
 
     @Transactional
     public Product save(Product p) {
+        if(p.getCategory()== null){
+            throw new IllegalArgumentException("Categoria obrigatória");
+        }
     return repo.save(p);
 }
 
