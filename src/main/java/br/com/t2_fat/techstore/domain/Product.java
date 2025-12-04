@@ -13,19 +13,24 @@ package br.com.t2_fat.techstore.domain;
 
  public class Product {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   private Long id;
     
-    @Column(nullable = false, length = 150)
-    private String name;
+   @Column(nullable = false, length = 150)
+   private String name;
     
-    @Column(length = 500)
-    private String description;
-    @Column(nullable = false, precision = 10, scale = 2)
-    private BigDecimal price;
+   @Column(length = 500)
+   private String description;
+   @Column(nullable = false, precision = 10, scale = 2)
+   private BigDecimal price;
     
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
+   @ManyToOne
+   @JoinColumn(name = "category_id")
+   private Category category;
+
+   @Version
+   private Integer version;
+
+   // getters e setters
  }
