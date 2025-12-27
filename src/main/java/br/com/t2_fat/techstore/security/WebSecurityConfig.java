@@ -11,22 +11,22 @@ import org.springframework.security.web.SecurityFilterChain;
 public class WebSecurityConfig {
     private final CustomUserDetailsService userDetailsService;
     private final SecurityConfig securityConfig;
+
     public WebSecurityConfig(CustomUserDetailsService service,
-    SecurityConfig config){
+            SecurityConfig config) {
         this.userDetailsService = service;
         this.securityConfig = config;
     }
-    
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http)
-    throws Exception {
-    return http
-    .csrf(csrf -> csrf.disable())
-    .authorizeHttpRequests(auth -> auth.requestMatchers("/api/products/**").hasRole("ADMIN")
-    .requestMatchers("/api/public/**").permitAll()
-    .anyRequest().authenticated()
-    )
-    .httpBasic(Customizer.withDefaults())
-    .build();
+            throws Exception {
+        return http
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(auth -> auth.requestMatchers("/api/products/**").hasRole("ADMIN")
+                        .requestMatchers("/api/public/**").permitAll()
+                        .anyRequest().authenticated())
+                .httpBasic(Customizer.withDefaults())
+                .build();
     }
 }
